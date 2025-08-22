@@ -13,18 +13,23 @@ public class GachaDice_EX11 {
         int tries = 1;
         int dice1 = ran.nextInt(6) + 1;
         int dice2 = ran.nextInt(6) + 1;
+        int dem = 1;
         if (dice1==dice2)
         {
+            System.out.println(dice1 + " + " + dice2);
             System.out.println("You got double after " + tries +" tries");
         }
-        while (dice1 != dice2) {
+        do {
+            
             dice1 = ran.nextInt(6) + 1;
             dice2 = ran.nextInt(6) + 1;
             tries++;
+            System.out.println("Roll " + (dem++) + ": "+dice1 +" + " +dice2);
             if (dice1 == dice2) {
-                System.out.println("You got double after " + tries +" tries");
+                System.out.println("You got double after " + (tries-1) +" tries");
                 break;
             }
-        }
+            
+        } while (true);
     }
 }
