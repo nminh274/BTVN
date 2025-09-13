@@ -37,11 +37,12 @@ public class Student extends Human{
         System.out.print("Input student ID: ");
         setsID(ss.nextLine());
         prEva();
-        
     }
+    @Override
     public void output(){
         super.output();
         System.out.println("Student ID: " + getsID());
         System.out.println("Practice Evaluation: " + getPrtc());
     }
 }
+
