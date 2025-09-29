@@ -75,7 +75,7 @@ public class Frame {
         for(Student s : list){
             if(s.getID().equalsIgnoreCase(ID)){
                 JOptionPane.showMessageDialog(f,"Found:\n " + s);
-                return;
+                break;
             } else {JOptionPane.showMessageDialog(f,"ID not found!");
             
         }}
@@ -109,4 +109,5 @@ public class Frame {
         });
     }
     
+
 }
