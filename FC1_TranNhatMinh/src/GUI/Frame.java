@@ -1,10 +1,13 @@
 package GUI;
+
 import java.io.*;
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.table.*;
+
 public class Frame {
+
     public static void main(String[] args) {
         JFrame f = new JFrame(); // Create Frame
         f.setSize(750, 600);     // Set frame size
@@ -50,36 +53,54 @@ public class Frame {
             jp.add(tf[i]);
         }
         f.setVisible(true); // Hiển thị frame sau khi đã thêm mọi thành phần
-        String[] cl = {"ID","Name","DOB","Address","Email"};
-        DefaultTableModel DTM = new DefaultTableModel(cl,0);
+        String[] cl = {"ID", "Name", "DOB", "Address", "Email"};
+        DefaultTableModel DTM = new DefaultTableModel(cl, 0);
         JTable JT = new JTable(DTM);
         JScrollPane SP = new JScrollPane(JT);
-        SP.setBounds(10, 280, 720,250);
-        jp.add(SP); 
+        SP.setBounds(10, 280, 720, 250);
+        jp.add(SP);
         ArrayList<Student> list = new ArrayList<>();
         //add
         addB.addActionListener(e -> {
-        String ID = tf[0].getText().trim();
-        String name = tf[1].getText().trim();
-        String dob = tf[2].getText().trim();
-        String email = tf[3].getText().trim();
-        String address = tf[4].getText().trim();
-        if(!ID.isEmpty() && !name.isEmpty()){
-            list.add(new Student(ID,name,dob,email,address));
-            JOptionPane.showMessageDialog(f,"Added student: " + name);
-        } else JOptionPane.showMessageDialog(f, "ID and Name are required.");
+            String ID = tf[0].getText().trim();
+            String name = tf[1].getText().trim();
+            String dob = tf[2].getText().trim();
+            String email = tf[3].getText().trim();
+            String address = tf[4].getText().trim();
+            if (!ID.isEmpty() && !name.isEmpty()) {
+                list.add(new Student(ID, name, dob, email, address));
+                JOptionPane.showMessageDialog(f, "Added student: " + name);
+            } else {
+                JOptionPane.showMessageDialog(f, "ID and Name are required.");
+            }
         });
+
         //searchID
-        searchB.addActionListener(e ->{
-        String ID = tf[0].getText().trim();
-        for(Student s : list){
-            if(s.getID().equalsIgnoreCase(ID)){
-                JOptionPane.showMessageDialog(f,"Found:\n " + s);
-                break;
-            } else {JOptionPane.showMessageDialog(f,"ID not found!");
-            
-        }}
+        searchB.addActionListener(e -> {
+            String ID = tf[0].getText().trim();
+            for (Student s : list) {
+                if (s.getID().equalsIgnoreCase(ID)) {
+                    JOptionPane.showMessageDialog(f, "Found:\n" + s);
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(f, "Student not found.");
         });
+        /*searchB.addActionListener(e -> {
+            String ID = tf[0].getText().trim();
+            boolean found = false;
+            for (Student s : list) {
+                if ((s.getID().equalsIgnoreCase(ID))) {
+                    JOptionPane.showMessageDialog(f, "Found:\n " + s);
+                    found = true;
+                    break;
+
+                }
+                if (!found) {
+                    JOptionPane.showMessageDialog(f, "ID not found!");
+                }
+            }
+        });*/
         //delete
         delB.addActionListener(e -> {
             String id = tf[0].getText().trim();
@@ -100,7 +121,7 @@ public class Frame {
                 writer.println("ID,Name,DOB,Address,Email");
                 for (Student s : list) {
                     writer.printf("%s,%s,%s,%s,%s%n",
-                        s.getID(), s.getName(), s.getDob(), s.getAddress(), s.getEmail());
+                            s.getID(), s.getName(), s.getDob(), s.getAddress(), s.getEmail());
                 }
                 JOptionPane.showMessageDialog(f, "Exported to students.csv");
             } catch (IOException ex) {
@@ -108,6 +129,5 @@ public class Frame {
             }
         });
     }
-    
 
 }
