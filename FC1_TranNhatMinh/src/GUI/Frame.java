@@ -32,7 +32,7 @@ public class Frame {
             bt[i].setFocusable(true);
             bt[i].setForeground(new Color(255, 150, 160));
             bt[i].setBackground(Color.WHITE);
-            bt[i].setFont(new Font("Coll Jazz", Font.BOLD, 13));
+            bt[i].setFont(new Font("Arial", Font.BOLD, 13));
             bt[i].setBounds(10 + i * 125, 220, 120, 25);
             jp.add(bt[i]);
         }
@@ -131,3 +131,4 @@ public class Frame {
     }
 
 }
+
